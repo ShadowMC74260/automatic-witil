@@ -23,3 +23,11 @@ echo start apps.bat >> start.bat
 start start.bat 
 
 pause
+code dump:
+:: If running with admin privileges, run your application
+if %errorLevel% NEQ 1 (
+    echo Running with administrative privileges...
+    start "" "C:\Program FIles\CrystalDiskInfo\DiskInfo64S.exe"
+)
+pause
+::might wanna try to implement auto detection.

@@ -1,5 +1,3 @@
-# Automatic Windows Assistance Engaged
-
-An app which helps you to fucking manage your windows pc automatically 
-Administering fe. 
-omfg im dead because of fe overdose
+# Automatic Windows Installation Manager [AWIM]
+This util dump provides ways to setup a new windows install, fast. 
+The goals of this dump include ways to include custom apps, so that you can edit it easily, plug into your disk, plug your disk into a windows machine and let it do all its work and be ready for you the next time you need it, because you don't deserve to go through that hell by yourself, king.
