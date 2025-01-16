@@ -6,7 +6,7 @@ if %errorLevel% NEQ 0 (
 echo Downloading Windows Updates... this may take a while
     echo @echo off > up.bat
     echo powershell Install-Module PSWindowsUpdate >> up.bat
-    echo powershell Import-Module PSWindowsUpdate >> up.bat
+    echo powershell Import-Module PSWindowsUpdate -y >> up.bat
     echo powershell -Command "Install-WindowsUpdate -AcceptAll -AutoReboot" >> up.bat
     echo exit >> up.bat
     start up.bat
