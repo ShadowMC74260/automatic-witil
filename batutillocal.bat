@@ -30,4 +30,6 @@ echo launching websites for login
 start apps.bat
 
 :: Need to start winget application from non-administrator for some apps.. but HOW and WHY, don't know how. Tried this roundabout, didn't work.
+echo PC will restart, please save your work.
 pause
+shutdown /r /t 10 /d [p]2:3
