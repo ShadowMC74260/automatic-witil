@@ -32,7 +32,7 @@ echo ======================
     echo winget install CrystalDewWorld.CrystalDiskInfo --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
     echo winget install Microsoft.DotNet.DesktopRuntime.Preview --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
     echo winget install Oracle.JDK.21 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
+    echo winget install RARLab.WinRAR --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
     echo exit >> apps.bat
     start apps.bat
     ping -n 10 youtube.com >nul
@@ -61,7 +61,7 @@ echo   Launching Websites
 echo =======================
     ::start "" "https://accounts.google.com/login"
     ::start "" "https://discord.com/login"
-    ::start "" ""
+    ::start "" "https://spotify.com/login"
     ping -n 10 youtube.com >nul
 echo ================================
 echo         Restarting PC...         
@@ -69,3 +69,4 @@ echo   Save all work and continue
 echo ================================
 pause
 ::shutdown /r /t 5
+shutdown /r /d p2:3
