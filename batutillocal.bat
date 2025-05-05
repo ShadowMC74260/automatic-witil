@@ -4,6 +4,30 @@ net session >nul 2>&1
 if %errorLevel% NEQ 0 (
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /B)
+
+echo                    =========================
+echo                       B  A  T  U  T  I  L 
+echo                    =========================
+echo                     by Yorii
+echo UserID?
+set /p user=
+if /I "%user%"=="Shadow" goto ashadow
+if /I "%user%"=="Yorii" goto yorii
+goto util
+:ashadow
+echo Hello LoliMaster Shadow
+goto util 
+:yorii
+echo Hello Miniyan Yorii.
+goto util
+:util
+echo BatUtil V0.93 @ %user%. 
+echo Would you like to install Updates? (Y/N)
+set /p choice=
+if /I "%choice%"=="Y" goto windowsupdate
+if /I "%choice%"=="N" goto appchoice
+
+:windowsupdate
 echo ===============================
 echo Launching Windows Update Script
 echo =============================== 
@@ -19,28 +43,81 @@ echo ===============================
     echo pause >> update.bat
     echo exit >> update.bat
 start update.bat
-ping -n 10 youtube.com >nul
-echo ======================
-echo    Downloading Apps
-echo ======================
-    echo @echo off > apps.bat
-    echo color 0d >> apps.bat
-    title Installing Apps
-    echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Spotify.Spotify --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install 9NKSQGP7F2NH --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install 9NBDXK71NK08 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Valve.Steam --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install EpicGames.EpicGamesLauncher --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install SoftDeluxe.FreeDownloadManager --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install CrystalDewWorld.CrystalDiskInfo --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Microsoft.DotNet.DesktopRuntime.Preview --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Oracle.JDK.21 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> apps.bat
-    echo pause >> apps.bat
-    echo exit >> apps.bat
-    start apps.bat
-    ping -n 10 youtube.com >nul
+ping -n 100 youtube.com >nul
+goto appchoice
+
+:appchoice
+color 07
+echo ______________________________________________________________________________________
+echo Which AppGroups would you like to install? [You can only enable them. Choose wisely.]
+echo Socials * GameLaunchers * GeneralTools * Benchmarks * Cloud * All 
+echo [Need help? use H]
+echo Done Selecting? Say Install.
+set /p choice=
+if /I "%choice%"=="Socials" goto socialapps
+if /I "%choice%"=="GameLaunchers" goto games
+if /I "%choice%"=="generaltools" goto general 
+if /I "%choice%"=="benchmarks" goto benchmarks
+if /I "%choice%"=="cloud" goto cloud 
+if /I "%choice%"=="all" goto all
+if /I "%choice%"=="h" goto helpapps
+if /I "%choice%"=="install" goto install
+if /I "%choice%"=="exit" goto exit
+echo invalid choice, go again.
+
+:helpapps
+echo Socials == Discord, Whatsapp, Spotify
+echo GameLaunchers == Steam, EpicGames, JDK21
+echo GeneralTools == Opera, ADB, 
+echo Cloud == Mega, Onedrive, Google Drive
+echo Benchmarks == CrystalDiskInfo, CrystalDiskMark, FurMark
+goto appchoice
+:socialapps
+echo @echo off > sapps.bat
+echo color 0d >> sapps.bat
+echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+echo winget install 9NKSQGP7F2NH --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+echo winget install 9NBDXK71NK08 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+echo winget install Spotify.Spotify --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+echo pause >> sapps.bat
+echo exit >> sapps.bat
+goto appchoice
+:games
+echo @echo off > games.bat
+echo color 0d >> games.bat
+echo winget install Valve.Steam --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
+echo winget install EpicGames.EpicGamesLauncher --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
+echo winget install Oracle.JDK.21 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
+echo winget install Roblox.Roblox --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
+echo pause >> games.bat
+echo exit >> games.bat
+goto appchoice
+:general
+echo @echo off > general.bat
+echo color 0d >> general.bat
+echo winget install Opera.Opera --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
+echo winget install Google.PlatformTools --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
+echo winget install Microsoft.DotNet.DesktopRuntime.Preview --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat  
+echo pause >> general.bat
+echo exit >> general.bat
+goto appchoice
+:benchmarks
+echo @echo off > benchmark.bat
+echo winget install CrystalDewWorld.CrystalDiskMark.AoiEdition --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark.bat
+echo winget install CrystalDewWorld.CrystalDiskInfo.AoiEdition --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark.bat
+echo winget install Geeks3D.FurMark --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark..bat
+echo exit >> benchmark.bat
+goto appchoice
+:cloud
+echo @echo off > cloud.bat
+echo winget install Mega.MEGASync --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
+echo winget install Google.GoogleDrive --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
+echo winget install Microsoft.OneDrive --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
+echo exit >> cloud.bat
+goto appchoice
+:all
+
+
 echo =========================
 echo   Downloading Visual C 
 echo =========================
@@ -68,7 +145,7 @@ echo   Launching Websites
 echo =======================
     ::start "" "https://accounts.google.com/login"
     ::start "" "https://discord.com/login"
-    ::start "" ""
+    ::start "" "https://mega.nz"
     ping -n 10 youtube.com >nul
 echo ================================
 echo         Restarting PC...         
