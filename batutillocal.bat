@@ -4,7 +4,6 @@ net session >nul 2>&1
 if %errorLevel% NEQ 0 (
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /B)
-
 echo                    =========================
 echo                       B  A  T  U  T  I  L 
 echo                    =========================
@@ -15,18 +14,17 @@ if /I "%user%"=="Shadow" goto ashadow
 if /I "%user%"=="Yorii" goto yorii
 goto util
 :ashadow
-echo Hello LoliMaster Shadow
+echo Hello, LoliMaster Shadow.
 goto util 
 :yorii
-echo Hello Miniyan Yorii.
+echo Hello, Miniyan Yorii.
 goto util
 :util
-echo BatUtil V0.93 @ %user%. 
-echo Would you like to install Updates? (Y/N)
+echo BatUtil V0.93 @ %user%'s Discretion. 
+echo Would you like to install Windows Updates? (Y/N)
 set /p choice=
 if /I "%choice%"=="Y" goto windowsupdate
 if /I "%choice%"=="N" goto appchoice
-
 :windowsupdate
 echo ===============================
 echo Launching Windows Update Script
@@ -45,9 +43,7 @@ echo ===============================
 start update.bat
 ping -n 100 youtube.com >nul
 goto appchoice
-
 :appchoice
-color 07
 echo ______________________________________________________________________________________
 echo Which AppGroups would you like to install? [You can only enable them. Choose wisely.]
 echo Socials * GameLaunchers * GeneralTools * Benchmarks * Cloud * All 
@@ -64,13 +60,13 @@ if /I "%choice%"=="h" goto helpapps
 if /I "%choice%"=="install" goto install
 if /I "%choice%"=="exit" goto exit
 echo invalid choice, go again.
-
 :helpapps
-echo Socials == Discord, Whatsapp, Spotify
-echo GameLaunchers == Steam, EpicGames, JDK21
-echo GeneralTools == Opera, ADB, 
-echo Cloud == Mega, Onedrive, Google Drive
-echo Benchmarks == CrystalDiskInfo, CrystalDiskMark, FurMark
+echo Applist for Ver0.93
+echo Socials        == Discord, Whatsapp, Spotify
+echo GameLaunchers  == Steam, EpicGames, JDK21, Roblox
+echo GeneralTools   == Opera, ADB
+echo Cloud          == Mega, Onedrive, Google Drive
+echo Benchmarks     == CrystalDiskInfo, CrystalDiskMark, FurMark
 goto appchoice
 :socialapps
 echo @echo off > sapps.bat
@@ -116,8 +112,7 @@ echo winget install Microsoft.OneDrive --accept-package-agreements --accept-sour
 echo exit >> cloud.bat
 goto appchoice
 :all
-
-
+:install
 echo =========================
 echo   Downloading Visual C 
 echo =========================
@@ -139,13 +134,6 @@ echo =========================
     echo pause >> vcc.bat
     echo exit >> vcc.bat
     start vcc.bat
-    ping -n 10 youtube.com >nul
-echo =======================
-echo   Launching Websites
-echo =======================
-    ::start "" "https://accounts.google.com/login"
-    ::start "" "https://discord.com/login"
-    ::start "" "https://mega.nz"
     ping -n 10 youtube.com >nul
 echo ================================
 echo         Restarting PC...         
