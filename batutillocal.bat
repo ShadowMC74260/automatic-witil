@@ -11,7 +11,7 @@ echo                     by Yorii
 echo UserID?
 set /p user=
 if /I "%user%"=="Shadow" goto ashadow
-if /I "%user%"=="Yorii" goto yorii
+if /I "%user%"=="Yorii" goto yoriizz
 goto util
 :ashadow
 echo Hello, LoliMaster Shadow.
@@ -36,12 +36,26 @@ echo ===============================
     echo Powershell install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force >> update.bat
     echo Powershell install-Module PSWindowsUpdate -Force >> update.bat
     echo Powershell Import-Module PSWindowsUpdate >> update.bat
-    echo @echo on >> update.bat 
+    echo @echo on >> update.bat
     echo Powershell "Get-WindowsUpdate -AcceptAll -IgnoreRebootRequired" >> update.bat
     echo pause >> update.bat
     echo exit >> update.bat
 start update.bat
+echo Editing Winget Settings 
+:: This part needs testing
+winget settings {
+    "$schema": "https://aka.ms/winget-settings.schema.json",
+
+    // For documentation on these settings, see: https://aka.ms/winget-settings
+    // "source": {
+    //    "autoUpdateIntervalInMinutes": 5
+    // },
+    "network": {
+        "downloader": "wininet"
+    }
+}
 ping -n 100 youtube.com >nul
+echo @echo off > starter.bat
 goto appchoice
 :appchoice
 echo ______________________________________________________________________________________
@@ -52,7 +66,7 @@ echo Done Selecting? Say Install.
 set /p choice=
 if /I "%choice%"=="Socials" goto socialapps
 if /I "%choice%"=="GameLaunchers" goto games
-if /I "%choice%"=="generaltools" goto general 
+if /I "%choice%"=="generaltools" goto general
 if /I "%choice%"=="benchmarks" goto benchmarks
 if /I "%choice%"=="cloud" goto cloud 
 if /I "%choice%"=="all" goto all
@@ -70,6 +84,7 @@ echo Benchmarks     == CrystalDiskInfo, CrystalDiskMark, FurMark
 goto appchoice
 :socialapps
 echo @echo off > sapps.bat
+echo start sapps.bat >> starter.bat
 echo color 0d >> sapps.bat
 echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
 echo winget install 9NKSQGP7F2NH --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
@@ -80,6 +95,7 @@ echo exit >> sapps.bat
 goto appchoice
 :games
 echo @echo off > games.bat
+echo start games.bat >> starter.bat
 echo color 0d >> games.bat
 echo winget install Valve.Steam --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
 echo winget install EpicGames.EpicGamesLauncher --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> games.bat
@@ -90,8 +106,8 @@ echo exit >> games.bat
 goto appchoice
 :general
 echo @echo off > general.bat
+echo start general.bat >> starter.bat
 echo color 0d >> general.bat
-echo winget install Opera.Opera --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
 echo winget install Google.PlatformTools --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
 echo winget install Microsoft.DotNet.DesktopRuntime.Preview --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat  
 echo pause >> general.bat
@@ -99,6 +115,7 @@ echo exit >> general.bat
 goto appchoice
 :benchmarks
 echo @echo off > benchmark.bat
+echo start benchmark.bat >> starter.bat
 echo winget install CrystalDewWorld.CrystalDiskMark.AoiEdition --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark.bat
 echo winget install CrystalDewWorld.CrystalDiskInfo.AoiEdition --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark.bat
 echo winget install Geeks3D.FurMark --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> benchmark..bat
@@ -106,12 +123,14 @@ echo exit >> benchmark.bat
 goto appchoice
 :cloud
 echo @echo off > cloud.bat
+echo start cloud.bat >> starter.bat
 echo winget install Mega.MEGASync --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
 echo winget install Google.GoogleDrive --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
 echo winget install Microsoft.OneDrive --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> cloud.bat
 echo exit >> cloud.bat
 goto appchoice
 :all
+echo exit >> starter.bat
 :install
 echo =========================
 echo   Downloading Visual C 
@@ -135,6 +154,7 @@ echo =========================
     echo exit >> vcc.bat
     start vcc.bat
     ping -n 10 youtube.com >nul
+start starter.bat
 echo ================================
 echo         Restarting PC...         
 echo   Save all work and continue 
