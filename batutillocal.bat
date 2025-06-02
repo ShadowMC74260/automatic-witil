@@ -46,10 +46,10 @@ echo Editing Winget Settings
 winget settings {
     "$schema": "https://aka.ms/winget-settings.schema.json",
 
-    // For documentation on these settings, see: https://aka.ms/winget-settings
-    // "source": {
-    //    "autoUpdateIntervalInMinutes": 5
-    // },
+    :: For documentation on these settings, see: https://aka.ms/winget-settings
+    :: "source": {
+    ::    "autoUpdateIntervalInMinutes": 5
+    :: },
     "network": {
         "downloader": "wininet"
     }
