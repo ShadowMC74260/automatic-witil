@@ -42,18 +42,17 @@ echo ===============================
     echo exit >> update.bat
 start update.bat
 echo Editing Winget Settings 
-:: This part needs testing
-winget settings {
-    "$schema": "https://aka.ms/winget-settings.schema.json",
-
-    :: For documentation on these settings, see: https://aka.ms/winget-settings
-    :: "source": {
-    ::    "autoUpdateIntervalInMinutes": 5
-    :: },
-    "network": {
-        "downloader": "wininet"
-    }
-}
+set "wsettings=%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
+echo { > %wsettings%
+echo    "$schema": "https://aka.ms/winget-settings.schema.json", >> %wsettings%
+echo    // For documentation on these settings, see: https://aka.ms/winget-settings >> %wsettings%
+echo    // "source": { >> %wsettings%
+echo    //    "autoUpdateIntervalInMinutes": 5 >> %wsettings%
+echo    // }, >> %wsettings%
+echo    "network": { >> %wsettings%
+echo        "downloader": "wininet" >> %wsettings%
+echo    } >> %wsettings%
+echo } >> %wsettings%
 ping -n 100 youtube.com >nul
 echo @echo off > starter.bat
 goto appchoice
@@ -78,7 +77,7 @@ echo invalid choice, go again.
 echo Applist for Ver0.93
 echo Socials        == Discord, Whatsapp, Spotify
 echo GameLaunchers  == Steam, EpicGames, JDK21, Roblox
-echo GeneralTools   == Opera, ADB
+echo GeneralTools   == ADB, 
 echo Cloud          == Mega, Onedrive, Google Drive
 echo Benchmarks     == CrystalDiskInfo, CrystalDiskMark, FurMark
 goto appchoice
@@ -89,7 +88,10 @@ echo color 0d >> sapps.bat
 echo winget install Discord.Discord --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
 echo winget install 9NKSQGP7F2NH --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
 echo winget install 9NBDXK71NK08 --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+::Whatsapp
 echo winget install Spotify.Spotify --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> sapps.bat
+echo winget install XP99J3KP4XZ4VV --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
+::Zoom
 echo pause >> sapps.bat
 echo exit >> sapps.bat
 goto appchoice
@@ -110,6 +112,11 @@ echo start general.bat >> starter.bat
 echo color 0d >> general.bat
 echo winget install Google.PlatformTools --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
 echo winget install Microsoft.DotNet.DesktopRuntime.Preview --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat  
+echo winget install qBittorrent.qBittorrent --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
+echo winget install XP9KHM4BK9FZ7Q --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat 
+::Visual Studio Code
+echo winget install XP8K0J757HHRDW --accept-package-agreements --accept-source-agreements --disable-interactivity --verbose >> general.bat
+::Audacity
 echo pause >> general.bat
 echo exit >> general.bat
 goto appchoice
