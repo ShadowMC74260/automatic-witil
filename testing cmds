@@ -1,0 +1,3 @@
+echo ping youtube.com > test.cmd
+echo pause >> test.cmd
+start test.cmd
