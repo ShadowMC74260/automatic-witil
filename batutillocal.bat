@@ -4,10 +4,19 @@ net session >nul 2>&1
 if %errorLevel% NEQ 0 (
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /B)
+echo _____________________________________________________________________    
+echo _____________________________________________________________________    
+echo _____________________________________________________________________
+echo _____________________________________________________________________
 echo                    =========================
 echo                       B  A  T  U  T  I  L 
 echo                    =========================
 echo                     by Yorii
+echo _____________________________________________________________________    
+echo _____________________________________________________________________    
+echo _____________________________________________________________________    
+echo _____________________________________________________________________    
+
 echo UserID?
 set /p user=
 if /I "%user%"=="Shadow" goto ashadow
@@ -42,17 +51,18 @@ echo ===============================
     echo exit >> update.bat
 start update.bat
 echo Editing Winget Settings 
-set "wsettings=%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
-echo { > %wsettings%
-echo    "$schema": "https://aka.ms/winget-settings.schema.json", >> %wsettings%
-echo    // For documentation on these settings, see: https://aka.ms/winget-settings >> %wsettings%
-echo    // "source": { >> %wsettings%
-echo    //    "autoUpdateIntervalInMinutes": 5 >> %wsettings%
-echo    // }, >> %wsettings%
-echo    "network": { >> %wsettings%
-echo        "downloader": "wininet" >> %wsettings%
-echo    } >> %wsettings%
-echo } >> %wsettings%
+del %LocalAppData%\Packages\Microsoft.DesktopAPpInstaller_8wekyb3d8bbwe\LocalState\settings.json
+set "wset=%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
+echo { > %wset%
+echo    "$schema": "https://aka.ms/winget-settings.schema.json", >> %wset%
+echo    // For documentation on these settings, see: https://aka.ms/winget-settings >> %wset%
+echo    // "source": { >> %wset%
+echo    //    "autoUpdateIntervalInMinutes": 5 >> %wset%
+echo    // }, >> %wset%
+echo    "network": { >> %wset%
+echo        "downloader": "wininet" >> %wset%
+echo    } >> %wset%
+echo } >> %wset%
 ping -n 100 youtube.com >nul
 echo @echo off > starter.bat
 goto appchoice
