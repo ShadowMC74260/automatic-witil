@@ -51,6 +51,7 @@ echo ===============================
     echo exit >> update.bat
 start update.bat
 echo Editing Winget Settings 
+winget settings
 del %LocalAppData%\Packages\Microsoft.DesktopAPpInstaller_8wekyb3d8bbwe\LocalState\settings.json
 set "wset=%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
 echo { > %wset%
